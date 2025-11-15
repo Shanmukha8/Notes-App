@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Note - Personal Notes App{% endblock %}
+
+{% block content %}
+<style>
+    .note-form-container {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    
+    .form-header {
+        margin-bottom: 30px;
+    }
+    
+    .form-header h2 {
+        color: #333;
+        margin-bottom: 10px;
+    }
+    
+    .form-actions {
+        display: flex;
+        gap: 10px;
+    }
+</style>
+
+<div class="note-form-container">
+    <div class="form-header">
+        <h2>✏️ Edit Note</h2>
+        <p style="color: #666;">Update your note</p>
+    </div>
+    
+    <form method="POST" action="{{ url_for('edit_note', note_id=note['id']) }}">
+        <div class="form-group">
+            <label for="title">Note Title</label>
+            <input type="text" id="title" name="title" required value="{{ note['title'] }}">
+        </div>
+        
+        <div class="form-group">
+            <label for="content">Note Content</label>
+            <textarea id="content" name="content" required>{{ note['content'] }}</textarea>
+        </div>
+        
+        <div class="form-actions">
+            <button type="submit" class="btn btn-success">Update Note</button>
+            <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

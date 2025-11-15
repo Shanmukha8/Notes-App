@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Create Note - Personal Notes App{% endblock %}
+
+{% block content %}
+<style>
+    .note-form-container {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    
+    .form-header {
+        margin-bottom: 30px;
+    }
+    
+    .form-header h2 {
+        color: #333;
+        margin-bottom: 10px;
+    }
+    
+    .form-actions {
+        display: flex;
+        gap: 10px;
+    }
+</style>
+
+<div class="note-form-container">
+    <div class="form-header">
+        <h2>✏️ Create New Note</h2>
+        <p style="color: #666;">Write down your thoughts and ideas</p>
+    </div>
+    
+    <form method="POST" action="{{ url_for('create_note') }}">
+        <div class="form-group">
+            <label for="title">Note Title</label>
+            <input type="text" id="title" name="title" required placeholder="Enter note title...">
+        </div>
+        
+        <div class="form-group">
+            <label for="content">Note Content</label>
+            <textarea id="content" name="content" required placeholder="Write your note here..."></textarea>
+        </div>
+        
+        <div class="form-actions">
+            <button type="submit" class="btn btn-success">Save Note</button>
+            <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}
